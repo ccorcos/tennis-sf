@@ -3,4 +3,5 @@ build/
 tmp/
 .DS_Store*
 *.log
-secrets.md
+secrets.json
+package-lock.json

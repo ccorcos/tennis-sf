@@ -8,5 +8,15 @@
   },
   "keywords": [],
   "author": "Chet Corcos <ccorcos@gmail.com> (http://www.chetcorcos.com/)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/fs-extra": "^8.0.1",
+    "@types/node": "^12.11.5",
+    "@types/selenium-webdriver": "^4.0.5",
+    "chromedriver": "^77.0.0",
+    "fs-extra": "^8.1.0",
+    "selenium-webdriver": "^4.0.0-alpha.5",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
+  }
 }
