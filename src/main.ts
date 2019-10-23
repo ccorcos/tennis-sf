@@ -1,6 +1,7 @@
 import { withBrowser } from "./browser"
 import { email, password } from "../secrets.json"
 import * as path from "path"
+import { uploadImage } from "./slack"
 
 const headless = false
 const glenParkUrl = "https://spotery.com/spot/3333270"
@@ -87,10 +88,15 @@ async function main() {
 		// Wait for it to be booked.
 		await browser.findText("Booked")
 		console.log("Booked!")
-		const fileName = `reservation-${date}-${time}.png`
+		const fileName = `reservation-${date}-${time}.png`.replace(/[\/ :]/g, "-")
 		const filePath = path.resolve(__dirname, "../logs/" + fileName)
 		await browser.saveScreenshotPng(filePath)
 		console.log("Reservation", filePath)
+
+		await uploadImage({
+			filePath,
+			message: `Reserved for ${date} at ${time}.`,
+		})
 	}, headless)
 }
 
