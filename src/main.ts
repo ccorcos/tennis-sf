@@ -2,14 +2,20 @@ import { withBrowser } from "./browser"
 import { email, password } from "../secrets.json"
 import * as path from "path"
 import { uploadImage } from "./slack"
+import * as moment from "moment"
 
 const headless = false
 const glenParkUrl = "https://spotery.com/spot/3333270"
 
-const date = "10/30/2019"
+const date = moment()
+	.add(1, "week")
+	.format("MM/DD/YYYY")
 
 async function main() {
 	await withBrowser(async browser => {
+		console.log("Starting program at", new Date())
+		console.log("Reserving for date", date)
+
 		// Go to the tennis court.
 		console.log("Visiting", glenParkUrl)
 		await browser.visit(glenParkUrl)
