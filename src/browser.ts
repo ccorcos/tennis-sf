@@ -18,7 +18,7 @@ import { Options } from "selenium-webdriver/chrome"
 import { IKey } from "selenium-webdriver/lib/input"
 import * as fs from "fs-extra"
 
-const defaultTimeoutMs = 30_000
+const defaultTimeoutMs = 60_000
 
 export async function withBrowser(
 	fn: (browser: Browser) => Promise<void>,

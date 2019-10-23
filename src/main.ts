@@ -16,14 +16,12 @@ async function main() {
 
 		// Log in.
 		console.log("Logging in as", email)
-		await browser
-			.getClassName("auth0-lock-view-content")
-			.find("input[type=email]")
-			.type(email)
-		await browser
-			.getClassName("auth0-lock-view-content")
-			.find("input[type=password]")
-			.type(password)
+		// Wait for auth0 to load.
+		await browser.getClassName("auth0-lock-view-content")
+		// Wait for the animation to reveal the inputs.
+		await wait(2000)
+		await browser.find("input[type=email]").type(email)
+		await browser.find("input[type=password]").type(password)
 		await browser.find("button[type=submit]").click()
 
 		// Request spot again.
@@ -80,7 +78,7 @@ async function main() {
 			.find(`option[value='${value}']`)
 			.click()
 
-		await new Promise(resolve => setTimeout(resolve, 5_000))
+		await wait(5000)
 		await browser.findText("BOOK NOW").click()
 
 		// Wait for it to be booked.
@@ -103,3 +101,7 @@ main()
 		console.log("🛑 done")
 		process.exit(1)
 	})
+
+function wait(ms: number) {
+	return new Promise(resolve => setTimeout(resolve, ms))
+}
