@@ -6,7 +6,7 @@ import { uploadImage } from "./slack"
 const headless = false
 const glenParkUrl = "https://spotery.com/spot/3333270"
 
-const date = "10/29/2019"
+const date = "10/30/2019"
 
 async function main() {
 	await withBrowser(async browser => {
@@ -49,15 +49,18 @@ async function main() {
 			})
 		)
 
-		console.log("[debug] options", results)
+		if (results.length === 0) {
+			throw new Error("No valid times for this date.")
+		}
 
 		const validOptions = results
 			.filter(({ disabled }) => !disabled)
 			.filter(({ time }) => time.endsWith("PM"))
+			.filter(({ time }) => time[0] !== "1")
 			.filter(({ time }) => time >= "06")
 
 		console.log(
-			"Time options are\n- ",
+			"Time options are\n",
 			validOptions.map(({ time }) => time).join("\n- ")
 		)
 
