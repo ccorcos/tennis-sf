@@ -1,0 +1,1 @@
+/Users/chet/Code/js/tennis-sf/node_modules/.bin/ts-node /Users/chet/Code/js/tennis-sf/src/main.ts | tee -a /Users/chet/Code/js/tennis-sf/logs/output.txt
