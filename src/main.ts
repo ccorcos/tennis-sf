@@ -34,6 +34,9 @@ async function main() {
 			.type(date)
 			.enter()
 
+		// Wait for the options to load.
+		await wait(2000)
+
 		const timeElmSelector = "select[name='pt1:socDateFrom0']"
 		const optionElements = await browser.find(timeElmSelector).findAll("option")
 		const results = await Promise.all(

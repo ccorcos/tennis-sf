@@ -17,6 +17,7 @@ import {
 import { Options } from "selenium-webdriver/chrome"
 import { IKey } from "selenium-webdriver/lib/input"
 import * as fs from "fs-extra"
+import * as path from "path"
 
 const defaultTimeoutMs = 60_000
 
@@ -414,6 +415,7 @@ export class Browser {
 	}
 
 	async saveScreenshotPng(filePath: string) {
+		await fs.mkdirp(path.dirname(filePath))
 		const base64 = await this.driver.takeScreenshot()
 		await fs.writeFile(filePath, base64, { encoding: "base64" })
 	}
