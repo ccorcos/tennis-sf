@@ -35,12 +35,12 @@ Extended from [gcloud-function-selenium-boilerplate](https://github.com/ccorcos/
 	```sh
 	npm run build
 	```
-- Edit the package.json deploy script to reference the name of the function you want to deploy. Currently, it's called `selenium`.
+- Edit the package.json deploy script to reference the name of the function you want to deploy. Currently, it's called `tennis-sf`.
 - Deploy
 	```sh
 	npm run deploy
 	```
 - The deployment should log an endpoint url that you can test.
 	```sh
-	curl https://us-central1-tennis-sf.cloudfunctions.net/selenium
+	curl https://us-central1-tennis-sf.cloudfunctions.net/tennis-sf
 	```
