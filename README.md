@@ -52,9 +52,9 @@ Extended from [gcloud-function-selenium-boilerplate](https://github.com/ccorcos/
 	gcloud scheduler jobs list
 	```
 
-- Create some triggers (this one waits til 7:01am on Tuesdays to reserve for the following week.)
+- Create some triggers (this one waits til 8:00am on Tuesdays to reserve for the following week.)
 	```sh
-	gcloud scheduler jobs create http reserve-tuesdays --schedule "1 7 * * 2" --time-zone "America/Los_Angeles" --uri "https://us-central1-tennis-sf.cloudfunctions.net/tennis-sf" --http-method GET
+	gcloud scheduler jobs create http reserve-tuesdays --schedule "0 8 * * 2" --time-zone "America/Los_Angeles" --uri "https://us-central1-tennis-sf.cloudfunctions.net/tennis-sf" --http-method GET
 	```
 
 - List jobs
