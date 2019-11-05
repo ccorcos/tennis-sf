@@ -1,5 +1,5 @@
 import * as got from "got"
-import { slackUrl, slackToken } from "../secrets.json"
+import { slackUrl, slackToken } from "./secrets.json"
 import * as shell from "shelljs"
 
 interface Attachment {

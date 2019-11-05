@@ -1,5 +1,5 @@
 import { withBrowser } from "./browser"
-import { email, password } from "../secrets.json"
+import { email, password } from "./secrets.json"
 import * as path from "path"
 import { uploadImage } from "./slack"
 
