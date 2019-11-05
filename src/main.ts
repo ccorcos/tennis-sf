@@ -1,10 +1,12 @@
 import { Request, Response } from "express"
-import * as moment from "moment"
+import * as moment from "moment-timezone"
 import { reserveTennisCourt } from "./tennis"
 import { sendSlackMessage } from "./slack"
 
 export default async function main(req: Request, res: Response) {
+	// Reserve for one week later.
 	const date = moment()
+		.tz("America/Los_Angeles")
 		.add(1, "week")
 		.format("MM/DD/YYYY")
 
