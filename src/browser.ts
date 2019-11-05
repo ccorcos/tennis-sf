@@ -23,8 +23,8 @@ import * as chromium from "chromium-version"
 
 const defaultTimeoutMs = 60_000
 
-export async function withBrowser(
-	fn: (browser: Browser) => Promise<void>,
+export async function withBrowser<T>(
+	fn: (browser: Browser) => Promise<T>,
 	headless = true
 ) {
 	const chromeOptions = new Options()
@@ -40,8 +40,9 @@ export async function withBrowser(
 		.setChromeOptions(chromeOptions)
 		.build()
 	try {
-		await fn(new Browser(driver))
+		const result = await fn(new Browser(driver))
 		await driver.quit()
+		return result
 	} catch (error) {
 		if (headless) {
 			await driver.quit()
