@@ -5,6 +5,7 @@
 ============================================================================= */
 
 // Importing chromedriver will add its exececutable script to the environment PATH.
+// GCloud should have chrome installed somewhere.
 import "chromedriver"
 import {
 	Builder,
@@ -18,21 +19,29 @@ import { Options } from "selenium-webdriver/chrome"
 import { IKey } from "selenium-webdriver/lib/input"
 import * as fs from "fs-extra"
 import * as path from "path"
+import * as chromium from "chromium-version"
 
 const defaultTimeoutMs = 60_000
 
-export async function withBrowser<T>(
-	fn: (browser: Browser) => Promise<T>,
+export async function withBrowser(
+	fn: (browser: Browser) => Promise<void>,
 	headless = true
-): Promise<T> {
+) {
+	const chromeOptions = new Options()
+	chromeOptions.setChromeBinaryPath(chromium.path)
+	chromeOptions.addArguments("--no-sandbox")
+	chromeOptions.addArguments("--disable-dev-shm-usage") // overcome limited resource problems
+	if (headless) {
+		chromeOptions.headless()
+	}
+
 	const driver = new Builder()
 		.forBrowser("chrome")
-		.setChromeOptions(headless ? new Options().headless() : new Options())
+		.setChromeOptions(chromeOptions)
 		.build()
 	try {
-		const result = await fn(new Browser(driver))
+		await fn(new Browser(driver))
 		await driver.quit()
-		return result
 	} catch (error) {
 		if (headless) {
 			await driver.quit()
@@ -415,6 +424,10 @@ export class Browser {
 		)
 	}
 
+	/**
+	 * GCloud /tmp directory is avaialable.
+	 * https://stackoverflow.com/questions/42719793/write-temporary-files-from-google-cloud-function
+	 */
 	async saveScreenshotPng(filePath: string) {
 		await fs.mkdirp(path.dirname(filePath))
 		const base64 = await this.driver.takeScreenshot()
