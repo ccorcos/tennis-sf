@@ -44,3 +44,7 @@ Extended from [gcloud-function-selenium-boilerplate](https://github.com/ccorcos/
 	```sh
 	curl https://us-central1-tennis-sf.cloudfunctions.net/tennis-sf
 	```
+
+## To Do
+
+Write logs back to the request socket so you can see it running.
