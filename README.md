@@ -65,3 +65,4 @@ Extended from [gcloud-function-selenium-boilerplate](https://github.com/ccorcos/
 ## To Do
 
 - Write logs back to the request socket so you can see it running.
+- Only allow PUT requests to avoid issues with web crawlers randomly scheduling tennis reservations.
