@@ -21,17 +21,18 @@ import * as path from "path"
 
 const defaultTimeoutMs = 60_000
 
-export async function withBrowser(
-	fn: (browser: Browser) => Promise<void>,
+export async function withBrowser<T>(
+	fn: (browser: Browser) => Promise<T>,
 	headless = true
-) {
+): Promise<T> {
 	const driver = new Builder()
 		.forBrowser("chrome")
 		.setChromeOptions(headless ? new Options().headless() : new Options())
 		.build()
 	try {
-		await fn(new Browser(driver))
+		const result = await fn(new Browser(driver))
 		await driver.quit()
+		return result
 	} catch (error) {
 		if (headless) {
 			await driver.quit()

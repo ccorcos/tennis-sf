@@ -6,3 +6,6 @@ tmp/
 secrets.json
 package-lock.json
 /logs
+
+*.log
+credentials.json
