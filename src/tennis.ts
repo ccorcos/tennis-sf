@@ -72,11 +72,9 @@ export async function reserveTennisCourt(date: string) {
 		const optionsAround7 = validOptions.filter(({ time }) =>
 			time.startsWith("07")
 		)
-		// Only get a time around 7pm.
-		const optionsNotAround7 = []
-		// validOptions.filter(
-		// 	({ time }) => !time.startsWith("07")
-		// )
+		const optionsNotAround7 = validOptions.filter(
+			({ time }) => !time.startsWith("07")
+		)
 
 		const optionPriorities = [...optionsAround7, ...optionsNotAround7]
 		const bestOption = optionPriorities[0]
