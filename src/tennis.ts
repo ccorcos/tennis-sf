@@ -62,7 +62,8 @@ export async function reserveTennisCourt(date: string) {
 			.filter(({ disabled }) => !disabled)
 			.filter(({ time }) => time.endsWith("PM"))
 			.filter(({ time }) => time[0] !== "1")
-			.filter(({ time }) => time >= "06")
+			// .filter(({ time }) => time >= "06")
+			.filter(({ time }) => time >= "07")
 
 		console.log(
 			"Time options are\n",
