@@ -23,7 +23,7 @@
 		"chromium-version": "^78.0.0",
 		"fs-extra": "^8.1.0",
 		"got": "^9.6.0",
-		"lodash": "4.17.15",
+		"lodash": "4.17.19",
 		"moment": "^2.24.0",
 		"moment-timezone": "^0.5.27",
 		"selenium-webdriver": "^4.0.0-alpha.5",
